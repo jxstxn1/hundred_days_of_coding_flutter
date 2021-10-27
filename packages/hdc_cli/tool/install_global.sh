@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -x
-
 CWD=$PWD
 CLI_PACKAGE_DIR=$(dirname "$(dirname "$0")")
 
