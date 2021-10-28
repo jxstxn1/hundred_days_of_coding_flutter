@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -e
+
+if ! [[ -x "$(command -v realpath)" ]]; then
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    brew install coreutils
+  fi
+fi
+
+SCRIPT_LOCATION=$(realpath "${0%/*}/")
+
+if [ "${SCRIPT_LOCATION}" == "/usr/local/bin" ]; then
+  # When called via /usr/local/bin reverse symlink back to the project root
+  THIS_SCRIPT=$(realpath "/usr/local/bin/hdc")
+  ROOT=$(dirname "${THIS_SCRIPT}")
+else
+  # Navigate to project root, allows execution from everywhere with correct relative links
+  ROOT=$SCRIPT_LOCATION
+fi
+
+HDC_CLI_PACKAGE="${ROOT}/packages/hdc_cli"
+CLI_COMMITS=$(git -C "$ROOT" rev-list --count HEAD "${HDC_CLI_PACKAGE}")
+
+EXE="${HDC_CLI_PACKAGE}/build/hdc_cli-$CLI_COMMITS.exe"
+
+if [ ! -f "${EXE}" ]; then
+  sh "${HDC_CLI_PACKAGE}/tool/install_global.sh"
+fi
+
+"${EXE}" "$@"
