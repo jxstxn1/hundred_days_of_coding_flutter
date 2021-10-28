@@ -10,10 +10,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  freezed_annotation: ^0.15.0
 
 dev_dependencies:
+  build_runner: ^2.1.4
   flutter_test:
     sdk: flutter  
+  freezed: ^0.15.0+1
   lint: ^1.7.2
   
 

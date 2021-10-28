@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:hdc_cli/src/commands/deps_command.dart';
 import 'package:hdc_cli/src/commands/format_command.dart';
+import 'package:hdc_cli/src/commands/gen_command.dart';
 import 'package:hdc_cli/src/commands/init_command.dart';
 import 'package:hdc_cli/src/commands/test_command.dart';
 import 'package:hdc_cli/src/commands/update_cli_command.dart';
@@ -31,6 +32,7 @@ class HdcCli {
       ..addCommand(FormatCommand())
       ..addCommand(DepsCommand())
       ..addCommand(DartAnalyzeCommand())
+      ..addCommand(GenerateCommand())
       ..addCommand(TestCommand());
 
     if (args.isEmpty) {
