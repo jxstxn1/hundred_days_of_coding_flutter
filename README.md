@@ -2,3 +2,5 @@
 
 ## Day 1:
     Started creating Project and using advanced tools to make the development easier
+## Day 2:
+    Added DataClasses with the help of freezed
