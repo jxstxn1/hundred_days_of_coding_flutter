@@ -6,7 +6,7 @@ import 'package:hundred_days_of_coding/data/current_weather/open_weather_current
 /// Provides the default [WeatherDataSource] and can be overriden during testing.
 final currentWeatherDataSourceProvider = Provider<CurrentWeatherDatasource>((_) {
   const apiKey = String.fromEnvironment('WEATHER_API_KEY');
-  const String baseUrl = 'https://api.openweathermap.org/data/2.5/weather?q=';
+  const String baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
   return OpenWeatherCurrentWeatherDatasource(client: Client(), apiKey: apiKey, endpoint: baseUrl);
 });
 

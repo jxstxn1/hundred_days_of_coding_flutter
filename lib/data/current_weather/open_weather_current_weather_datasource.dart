@@ -14,27 +14,37 @@ import 'package:hundred_days_of_coding/data/weather_objects/sun.dart';
 import 'package:hundred_days_of_coding/data/weather_objects/wind.dart';
 
 class OpenWeatherCurrentWeatherDatasource implements CurrentWeatherDatasource {
-  const OpenWeatherCurrentWeatherDatasource({required this.client, required this.apiKey, required this.endpoint});
+  const OpenWeatherCurrentWeatherDatasource({
+    required this.client,
+    required this.apiKey,
+    required this.endpoint,
+    this.metrics = 'metric',
+  });
 
   final http.Client client;
   final String apiKey;
   final String endpoint;
+  final String metrics;
 
   @override
   Future<CurrentWeather> getCurrentWeatherByCity({required String city}) async {
-    final Uri uri = Uri.parse('endpoint$city&appid=$endpoint');
+    final Uri uri = Uri.parse('${endpoint}q=$city&appid=$endpoint&units$metrics');
+    return requesterAndPicker(uri);
+  }
+
+  @override
+  Future<CurrentWeather> getCurrentWeatherByLatLng({required double lat, required double lng}) async {
+    final Uri uri = Uri.parse('${endpoint}lat=$lat&lon=$lng&appid=$endpoint&units$metrics');
+    return requesterAndPicker(uri);
+  }
+
+  Future<CurrentWeather> requesterAndPicker(Uri uri) async {
     final response = await client.get(uri);
     if (response.statusCode == 200) {
       final responseBody = json.decode(utf8.decode(response.bodyBytes));
       return pick(responseBody).letOrThrow(_pickCurrentWeather);
     }
     throw Exception('Unexpected status code code ${response.statusCode}');
-  }
-
-  @override
-  Future<CurrentWeather> getCurrentWeatherByLatLng({required double lat, required double lng}) {
-    // TODO: implement getCurrentWeatherByLatLng
-    throw UnimplementedError();
   }
 }
 
