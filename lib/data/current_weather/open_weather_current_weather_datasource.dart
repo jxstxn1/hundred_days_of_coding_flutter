@@ -40,7 +40,7 @@ class OpenWeatherCurrentWeatherDatasource implements CurrentWeatherDatasource {
 
 CurrentWeather _pickCurrentWeather(RequiredPick pick) {
   return CurrentWeather(
-    city: City(name: pick('city').asStringOrNull() ?? ''),
+    city: City(name: pick('name').asStringOrNull() ?? ''),
     mainWeather: MainWeather(
       temp: pick('main', 'temp').asDoubleOrThrow(),
       feelsLike: pick('main', 'feels_like').asDoubleOrThrow(),

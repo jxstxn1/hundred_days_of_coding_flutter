@@ -5,4 +5,6 @@
 ## Day 2:
     Added DataClasses with the help of freezed
 ## Day 3:
-    Started working on the WeatherDataSource and learned about Flutter Rivepod
+    Started working on the WeatherDataSource and learned about Flutter Riverpod
+## Day 4:
+    Started to learn about Tests and have written first test for `getCurrentWeatherByCity`
