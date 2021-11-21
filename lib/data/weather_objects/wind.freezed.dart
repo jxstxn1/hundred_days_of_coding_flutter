@@ -119,14 +119,14 @@ class _$_Wind implements _Wind {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _Wind &&
-            (identical(other.speed, speed) || other.speed == speed) &&
-            (identical(other.deg, deg) || other.deg == deg));
+        (other is _Wind &&
+            (identical(other.speed, speed) || const DeepCollectionEquality().equals(other.speed, speed)) &&
+            (identical(other.deg, deg) || const DeepCollectionEquality().equals(other.deg, deg)));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, speed, deg);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(speed) ^ const DeepCollectionEquality().hash(deg);
 
   @JsonKey(ignore: true)
   @override
@@ -137,9 +137,9 @@ abstract class _Wind implements Wind {
   const factory _Wind({double? speed, double? deg}) = _$_Wind;
 
   @override
-  double? get speed;
+  double? get speed => throw _privateConstructorUsedError;
   @override
-  double? get deg;
+  double? get deg => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$WindCopyWith<_Wind> get copyWith => throw _privateConstructorUsedError;

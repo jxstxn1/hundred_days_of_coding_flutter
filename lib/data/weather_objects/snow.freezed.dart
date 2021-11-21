@@ -119,15 +119,18 @@ class _$_Snow implements _Snow {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _Snow &&
-            (identical(other.snowVolumeOneHour, snowVolumeOneHour) || other.snowVolumeOneHour == snowVolumeOneHour) &&
+        (other is _Snow &&
+            (identical(other.snowVolumeOneHour, snowVolumeOneHour) ||
+                const DeepCollectionEquality().equals(other.snowVolumeOneHour, snowVolumeOneHour)) &&
             (identical(other.snowVolumeThreeHours, snowVolumeThreeHours) ||
-                other.snowVolumeThreeHours == snowVolumeThreeHours));
+                const DeepCollectionEquality().equals(other.snowVolumeThreeHours, snowVolumeThreeHours)));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, snowVolumeOneHour, snowVolumeThreeHours);
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(snowVolumeOneHour) ^
+      const DeepCollectionEquality().hash(snowVolumeThreeHours);
 
   @JsonKey(ignore: true)
   @override
@@ -138,9 +141,9 @@ abstract class _Snow implements Snow {
   const factory _Snow({double? snowVolumeOneHour, double? snowVolumeThreeHours}) = _$_Snow;
 
   @override
-  double? get snowVolumeOneHour;
+  double? get snowVolumeOneHour => throw _privateConstructorUsedError;
   @override
-  double? get snowVolumeThreeHours;
+  double? get snowVolumeThreeHours => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SnowCopyWith<_Snow> get copyWith => throw _privateConstructorUsedError;

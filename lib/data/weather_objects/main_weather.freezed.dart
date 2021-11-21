@@ -189,18 +189,25 @@ class _$_MainWeather implements _MainWeather {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _MainWeather &&
-            (identical(other.temp, temp) || other.temp == temp) &&
-            (identical(other.feelsLike, feelsLike) || other.feelsLike == feelsLike) &&
-            (identical(other.tempMin, tempMin) || other.tempMin == tempMin) &&
-            (identical(other.tempMax, tempMax) || other.tempMax == tempMax) &&
-            (identical(other.pressure, pressure) || other.pressure == pressure) &&
-            (identical(other.humidity, humidity) || other.humidity == humidity));
+        (other is _MainWeather &&
+            (identical(other.temp, temp) || const DeepCollectionEquality().equals(other.temp, temp)) &&
+            (identical(other.feelsLike, feelsLike) ||
+                const DeepCollectionEquality().equals(other.feelsLike, feelsLike)) &&
+            (identical(other.tempMin, tempMin) || const DeepCollectionEquality().equals(other.tempMin, tempMin)) &&
+            (identical(other.tempMax, tempMax) || const DeepCollectionEquality().equals(other.tempMax, tempMax)) &&
+            (identical(other.pressure, pressure) || const DeepCollectionEquality().equals(other.pressure, pressure)) &&
+            (identical(other.humidity, humidity) || const DeepCollectionEquality().equals(other.humidity, humidity)));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, temp, feelsLike, tempMin, tempMax, pressure, humidity);
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(temp) ^
+      const DeepCollectionEquality().hash(feelsLike) ^
+      const DeepCollectionEquality().hash(tempMin) ^
+      const DeepCollectionEquality().hash(tempMax) ^
+      const DeepCollectionEquality().hash(pressure) ^
+      const DeepCollectionEquality().hash(humidity);
 
   @JsonKey(ignore: true)
   @override
@@ -217,17 +224,17 @@ abstract class _MainWeather implements MainWeather {
       required double humidity}) = _$_MainWeather;
 
   @override
-  double get temp;
+  double get temp => throw _privateConstructorUsedError;
   @override
-  double get feelsLike;
+  double get feelsLike => throw _privateConstructorUsedError;
   @override
-  double get tempMin;
+  double get tempMin => throw _privateConstructorUsedError;
   @override
-  double get tempMax;
+  double get tempMax => throw _privateConstructorUsedError;
   @override
-  double get pressure;
+  double get pressure => throw _privateConstructorUsedError;
   @override
-  double get humidity;
+  double get humidity => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MainWeatherCopyWith<_MainWeather> get copyWith => throw _privateConstructorUsedError;

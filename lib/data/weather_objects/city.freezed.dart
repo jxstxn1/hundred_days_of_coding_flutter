@@ -105,11 +105,11 @@ class _$_City implements _City {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _City && (identical(other.name, name) || other.name == name));
+        (other is _City && (identical(other.name, name) || const DeepCollectionEquality().equals(other.name, name)));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(name);
 
   @JsonKey(ignore: true)
   @override
@@ -120,7 +120,7 @@ abstract class _City implements City {
   const factory _City({required String name}) = _$_City;
 
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CityCopyWith<_City> get copyWith => throw _privateConstructorUsedError;

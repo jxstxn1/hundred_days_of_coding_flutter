@@ -119,15 +119,18 @@ class _$_Rain implements _Rain {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _Rain &&
-            (identical(other.rainVolumeOneHour, rainVolumeOneHour) || other.rainVolumeOneHour == rainVolumeOneHour) &&
+        (other is _Rain &&
+            (identical(other.rainVolumeOneHour, rainVolumeOneHour) ||
+                const DeepCollectionEquality().equals(other.rainVolumeOneHour, rainVolumeOneHour)) &&
             (identical(other.rainVolumeThreeHours, rainVolumeThreeHours) ||
-                other.rainVolumeThreeHours == rainVolumeThreeHours));
+                const DeepCollectionEquality().equals(other.rainVolumeThreeHours, rainVolumeThreeHours)));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, rainVolumeOneHour, rainVolumeThreeHours);
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(rainVolumeOneHour) ^
+      const DeepCollectionEquality().hash(rainVolumeThreeHours);
 
   @JsonKey(ignore: true)
   @override
@@ -138,9 +141,9 @@ abstract class _Rain implements Rain {
   const factory _Rain({double? rainVolumeOneHour, double? rainVolumeThreeHours}) = _$_Rain;
 
   @override
-  double? get rainVolumeOneHour;
+  double? get rainVolumeOneHour => throw _privateConstructorUsedError;
   @override
-  double? get rainVolumeThreeHours;
+  double? get rainVolumeThreeHours => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$RainCopyWith<_Rain> get copyWith => throw _privateConstructorUsedError;

@@ -18,13 +18,7 @@ class _$CurrentWeatherTearOff {
   const _$CurrentWeatherTearOff();
 
   _CurrentWeather call(
-      {required MainWeather mainWeather,
-      required City city,
-      Cloud? cloud,
-      Rain? rain,
-      Snow? snow,
-      Sun? sun,
-      Wind? wind}) {
+      {MainWeather? mainWeather, City? city, Cloud? cloud, Rain? rain, Snow? snow, Sun? sun, Wind? wind}) {
     return _CurrentWeather(
       mainWeather: mainWeather,
       city: city,
@@ -42,8 +36,8 @@ const $CurrentWeather = _$CurrentWeatherTearOff();
 
 /// @nodoc
 mixin _$CurrentWeather {
-  MainWeather get mainWeather => throw _privateConstructorUsedError;
-  City get city => throw _privateConstructorUsedError;
+  MainWeather? get mainWeather => throw _privateConstructorUsedError;
+  City? get city => throw _privateConstructorUsedError;
   Cloud? get cloud => throw _privateConstructorUsedError;
   Rain? get rain => throw _privateConstructorUsedError;
   Snow? get snow => throw _privateConstructorUsedError;
@@ -58,10 +52,10 @@ mixin _$CurrentWeather {
 abstract class $CurrentWeatherCopyWith<$Res> {
   factory $CurrentWeatherCopyWith(CurrentWeather value, $Res Function(CurrentWeather) then) =
       _$CurrentWeatherCopyWithImpl<$Res>;
-  $Res call({MainWeather mainWeather, City city, Cloud? cloud, Rain? rain, Snow? snow, Sun? sun, Wind? wind});
+  $Res call({MainWeather? mainWeather, City? city, Cloud? cloud, Rain? rain, Snow? snow, Sun? sun, Wind? wind});
 
-  $MainWeatherCopyWith<$Res> get mainWeather;
-  $CityCopyWith<$Res> get city;
+  $MainWeatherCopyWith<$Res>? get mainWeather;
+  $CityCopyWith<$Res>? get city;
   $CloudCopyWith<$Res>? get cloud;
   $RainCopyWith<$Res>? get rain;
   $SnowCopyWith<$Res>? get snow;
@@ -91,11 +85,11 @@ class _$CurrentWeatherCopyWithImpl<$Res> implements $CurrentWeatherCopyWith<$Res
       mainWeather: mainWeather == freezed
           ? _value.mainWeather
           : mainWeather // ignore: cast_nullable_to_non_nullable
-              as MainWeather,
+              as MainWeather?,
       city: city == freezed
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as City,
+              as City?,
       cloud: cloud == freezed
           ? _value.cloud
           : cloud // ignore: cast_nullable_to_non_nullable
@@ -120,15 +114,23 @@ class _$CurrentWeatherCopyWithImpl<$Res> implements $CurrentWeatherCopyWith<$Res
   }
 
   @override
-  $MainWeatherCopyWith<$Res> get mainWeather {
-    return $MainWeatherCopyWith<$Res>(_value.mainWeather, (value) {
+  $MainWeatherCopyWith<$Res>? get mainWeather {
+    if (_value.mainWeather == null) {
+      return null;
+    }
+
+    return $MainWeatherCopyWith<$Res>(_value.mainWeather!, (value) {
       return _then(_value.copyWith(mainWeather: value));
     });
   }
 
   @override
-  $CityCopyWith<$Res> get city {
-    return $CityCopyWith<$Res>(_value.city, (value) {
+  $CityCopyWith<$Res>? get city {
+    if (_value.city == null) {
+      return null;
+    }
+
+    return $CityCopyWith<$Res>(_value.city!, (value) {
       return _then(_value.copyWith(city: value));
     });
   }
@@ -194,12 +196,12 @@ abstract class _$CurrentWeatherCopyWith<$Res> implements $CurrentWeatherCopyWith
   factory _$CurrentWeatherCopyWith(_CurrentWeather value, $Res Function(_CurrentWeather) then) =
       __$CurrentWeatherCopyWithImpl<$Res>;
   @override
-  $Res call({MainWeather mainWeather, City city, Cloud? cloud, Rain? rain, Snow? snow, Sun? sun, Wind? wind});
+  $Res call({MainWeather? mainWeather, City? city, Cloud? cloud, Rain? rain, Snow? snow, Sun? sun, Wind? wind});
 
   @override
-  $MainWeatherCopyWith<$Res> get mainWeather;
+  $MainWeatherCopyWith<$Res>? get mainWeather;
   @override
-  $CityCopyWith<$Res> get city;
+  $CityCopyWith<$Res>? get city;
   @override
   $CloudCopyWith<$Res>? get cloud;
   @override
@@ -235,11 +237,11 @@ class __$CurrentWeatherCopyWithImpl<$Res> extends _$CurrentWeatherCopyWithImpl<$
       mainWeather: mainWeather == freezed
           ? _value.mainWeather
           : mainWeather // ignore: cast_nullable_to_non_nullable
-              as MainWeather,
+              as MainWeather?,
       city: city == freezed
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as City,
+              as City?,
       cloud: cloud == freezed
           ? _value.cloud
           : cloud // ignore: cast_nullable_to_non_nullable
@@ -267,13 +269,12 @@ class __$CurrentWeatherCopyWithImpl<$Res> extends _$CurrentWeatherCopyWithImpl<$
 /// @nodoc
 
 class _$_CurrentWeather implements _CurrentWeather {
-  const _$_CurrentWeather(
-      {required this.mainWeather, required this.city, this.cloud, this.rain, this.snow, this.sun, this.wind});
+  const _$_CurrentWeather({this.mainWeather, this.city, this.cloud, this.rain, this.snow, this.sun, this.wind});
 
   @override
-  final MainWeather mainWeather;
+  final MainWeather? mainWeather;
   @override
-  final City city;
+  final City? city;
   @override
   final Cloud? cloud;
   @override
@@ -293,19 +294,27 @@ class _$_CurrentWeather implements _CurrentWeather {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _CurrentWeather &&
-            (identical(other.mainWeather, mainWeather) || other.mainWeather == mainWeather) &&
-            (identical(other.city, city) || other.city == city) &&
-            (identical(other.cloud, cloud) || other.cloud == cloud) &&
-            (identical(other.rain, rain) || other.rain == rain) &&
-            (identical(other.snow, snow) || other.snow == snow) &&
-            (identical(other.sun, sun) || other.sun == sun) &&
-            (identical(other.wind, wind) || other.wind == wind));
+        (other is _CurrentWeather &&
+            (identical(other.mainWeather, mainWeather) ||
+                const DeepCollectionEquality().equals(other.mainWeather, mainWeather)) &&
+            (identical(other.city, city) || const DeepCollectionEquality().equals(other.city, city)) &&
+            (identical(other.cloud, cloud) || const DeepCollectionEquality().equals(other.cloud, cloud)) &&
+            (identical(other.rain, rain) || const DeepCollectionEquality().equals(other.rain, rain)) &&
+            (identical(other.snow, snow) || const DeepCollectionEquality().equals(other.snow, snow)) &&
+            (identical(other.sun, sun) || const DeepCollectionEquality().equals(other.sun, sun)) &&
+            (identical(other.wind, wind) || const DeepCollectionEquality().equals(other.wind, wind)));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, mainWeather, city, cloud, rain, snow, sun, wind);
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(mainWeather) ^
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(cloud) ^
+      const DeepCollectionEquality().hash(rain) ^
+      const DeepCollectionEquality().hash(snow) ^
+      const DeepCollectionEquality().hash(sun) ^
+      const DeepCollectionEquality().hash(wind);
 
   @JsonKey(ignore: true)
   @override
@@ -315,8 +324,8 @@ class _$_CurrentWeather implements _CurrentWeather {
 
 abstract class _CurrentWeather implements CurrentWeather {
   const factory _CurrentWeather(
-      {required MainWeather mainWeather,
-      required City city,
+      {MainWeather? mainWeather,
+      City? city,
       Cloud? cloud,
       Rain? rain,
       Snow? snow,
@@ -324,19 +333,19 @@ abstract class _CurrentWeather implements CurrentWeather {
       Wind? wind}) = _$_CurrentWeather;
 
   @override
-  MainWeather get mainWeather;
+  MainWeather? get mainWeather => throw _privateConstructorUsedError;
   @override
-  City get city;
+  City? get city => throw _privateConstructorUsedError;
   @override
-  Cloud? get cloud;
+  Cloud? get cloud => throw _privateConstructorUsedError;
   @override
-  Rain? get rain;
+  Rain? get rain => throw _privateConstructorUsedError;
   @override
-  Snow? get snow;
+  Snow? get snow => throw _privateConstructorUsedError;
   @override
-  Sun? get sun;
+  Sun? get sun => throw _privateConstructorUsedError;
   @override
-  Wind? get wind;
+  Wind? get wind => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CurrentWeatherCopyWith<_CurrentWeather> get copyWith => throw _privateConstructorUsedError;

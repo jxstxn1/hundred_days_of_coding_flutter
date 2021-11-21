@@ -105,13 +105,13 @@ class _$_Cloud implements _Cloud {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _Cloud &&
-            (identical(other.cloudiness, cloudiness) || other.cloudiness == cloudiness));
+        (other is _Cloud &&
+            (identical(other.cloudiness, cloudiness) ||
+                const DeepCollectionEquality().equals(other.cloudiness, cloudiness)));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, cloudiness);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(cloudiness);
 
   @JsonKey(ignore: true)
   @override
@@ -122,7 +122,7 @@ abstract class _Cloud implements Cloud {
   const factory _Cloud({double? cloudiness}) = _$_Cloud;
 
   @override
-  double? get cloudiness;
+  double? get cloudiness => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CloudCopyWith<_Cloud> get copyWith => throw _privateConstructorUsedError;

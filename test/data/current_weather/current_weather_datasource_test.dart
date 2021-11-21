@@ -21,26 +21,6 @@ void main() {
   });
 }
 
-void expectedValues(CurrentWeather currentWeather) {
-  expect(currentWeather.city.name, 'Test City');
-  expect(currentWeather.mainWeather.temp, 20.5);
-  expect(currentWeather.mainWeather.feelsLike, 19.5);
-  expect(currentWeather.mainWeather.tempMin, 19.6);
-  expect(currentWeather.mainWeather.tempMax, 21.0);
-  expect(currentWeather.mainWeather.pressure, 1023.0);
-  expect(currentWeather.mainWeather.humidity, 55.0);
-  expect(currentWeather.city.name, 'Test City');
-  expect(currentWeather.cloud?.cloudiness, 55.5);
-  expect(currentWeather.rain?.rainVolumeOneHour, 59.0);
-  expect(currentWeather.rain?.rainVolumeThreeHours, null);
-  expect(currentWeather.snow?.snowVolumeOneHour, null);
-  expect(currentWeather.snow?.snowVolumeThreeHours, null);
-  expect(currentWeather.sun?.sunrise, '1560343627');
-  expect(currentWeather.sun?.sunset, '1560396563');
-  expect(currentWeather.wind?.speed, 70);
-  expect(currentWeather.wind?.deg, 350);
-}
-
 class FakeClient extends Fake implements http.Client {
   @override
   Future<http.Response> get(Uri url, {Map<String, String>? headers}) async {
@@ -94,4 +74,23 @@ class FakeClient extends Fake implements http.Client {
     "name": "Test City",
     "cod": 200
   };
+}
+
+void expectedValues(CurrentWeather currentWeather) {
+  expect(currentWeather.mainWeather?.temp, 20.5);
+  expect(currentWeather.mainWeather?.feelsLike, 19.5);
+  expect(currentWeather.mainWeather?.tempMin, 19.6);
+  expect(currentWeather.mainWeather?.tempMax, 21.0);
+  expect(currentWeather.mainWeather?.pressure, 1023.0);
+  expect(currentWeather.mainWeather?.humidity, 55.0);
+  expect(currentWeather.city?.name, 'Test City');
+  expect(currentWeather.cloud?.cloudiness, 55.5);
+  expect(currentWeather.rain?.rainVolumeOneHour, 59.0);
+  expect(currentWeather.rain?.rainVolumeThreeHours, null);
+  expect(currentWeather.snow?.snowVolumeOneHour, null);
+  expect(currentWeather.snow?.snowVolumeThreeHours, null);
+  expect(currentWeather.sun?.sunrise, '1560343627');
+  expect(currentWeather.sun?.sunset, '1560396563');
+  expect(currentWeather.wind?.speed, 70);
+  expect(currentWeather.wind?.deg, 350);
 }

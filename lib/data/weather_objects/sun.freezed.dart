@@ -119,14 +119,14 @@ class _$_Sun implements _Sun {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _Sun &&
-            (identical(other.sunrise, sunrise) || other.sunrise == sunrise) &&
-            (identical(other.sunset, sunset) || other.sunset == sunset));
+        (other is _Sun &&
+            (identical(other.sunrise, sunrise) || const DeepCollectionEquality().equals(other.sunrise, sunrise)) &&
+            (identical(other.sunset, sunset) || const DeepCollectionEquality().equals(other.sunset, sunset)));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, sunrise, sunset);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(sunrise) ^ const DeepCollectionEquality().hash(sunset);
 
   @JsonKey(ignore: true)
   @override
@@ -137,9 +137,9 @@ abstract class _Sun implements Sun {
   const factory _Sun({String? sunrise, String? sunset}) = _$_Sun;
 
   @override
-  String? get sunrise;
+  String? get sunrise => throw _privateConstructorUsedError;
   @override
-  String? get sunset;
+  String? get sunset => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SunCopyWith<_Sun> get copyWith => throw _privateConstructorUsedError;

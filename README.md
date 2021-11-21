@@ -10,3 +10,7 @@
     Started to learn about Tests and have written first test for `getCurrentWeatherByCity`
 ## Day 5: 
     Integrated `getCurrentWeatherByLatLng` + Tests. Optimized some Stuff
+## Day 6:
+    Added a repository class to more or less cache data
+## Day 7:
+    Added more tests to current weather model and optimized some stuff

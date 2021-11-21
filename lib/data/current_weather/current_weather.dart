@@ -12,8 +12,8 @@ part 'current_weather.freezed.dart';
 @freezed
 class CurrentWeather with _$CurrentWeather {
   const factory CurrentWeather({
-    required MainWeather mainWeather,
-    required City city,
+    MainWeather? mainWeather,
+    City? city,
     Cloud? cloud,
     Rain? rain,
     Snow? snow,
